@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	unsigned long long int chiffre_actuel = 0;
 	int tab[40], i = 0, tab2[40], n = 2, j = 0, r = 0, k = 0, p, t = 0, a;
 
-	fichier = fopen("tests/test00", "r");
+	fichier = fopen(argv[1], "r");
 	if (fichier != NULL)
 	{
 		do
