@@ -28,12 +28,12 @@ int main(int argc, char *argv[])
 			{
 				printtab(tab, i);
 				n = 2, t = 0, j = 0, p = 0, a = 1;
-				while (p <= 25)
+				while (p < 24)
 				{
 					tab2[p] = tab[p];
 					p++;
 				}
-				for (int m = 0; m <= 25; m++)
+				for (int m = 0; m < 24; m++)
 					ktab[m] = 0;
 				while ((tab2[i-1] != 0 || j != i-1) || a == 1)
 				{
@@ -58,23 +58,23 @@ int main(int argc, char *argv[])
 						continue;
 					}
 					p = 0;
-					while (p <= 40)
+					while (p < 24)
 					{
 						tab2[p] = tab[p];
 						p++;
 					}
 					n++, j = 0;
 					// printf("\nA%lld\n", n);
-					for (int m = 0; m <= 25; m++)
+					for (int m = 0; m < 24; m++)
 						ktab[m] = 0;
 					}
 				printf("=");
 				printtab(ktab, i);
 				printf("*%lld\n", n);
 				i = 0;
-				for (int m = 0; m <= 25; m++)
+				for (int m = 0; m < 24; m++)
 					tab[m] = 0;
-				for (int m = 0; m <= 25; m++)
+				for (int m = 0; m < 24; m++)
 					tab2[m] = 0;
 			}
 			else
