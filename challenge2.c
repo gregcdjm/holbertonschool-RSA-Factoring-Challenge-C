@@ -18,13 +18,15 @@ int main(int argc, char *argv[])
 	unsigned long long int i = 0, n = 2, j = 0, p, t = 0, a;
 	int chiffre_actuel = 0;
 
+	(void)argc;
+
 	fichier = fopen(argv[1], "r");
 	if (fichier != NULL)
 	{
 		do
 		{
 			chiffre_actuel = fgetc(fichier);
-			if (chiffre_actuel == '\n')
+			if (chiffre_actuel == '\n'|| chiffre_actuel == EOF)
 			{
 				printtab(tab, i);
 				n = 2, t = 0, j = 0, p = 0, a = 1;
@@ -42,7 +44,6 @@ int main(int argc, char *argv[])
 					{
 					        tab2[j] -=n;
 						ktab[j] += 1;
-						//	printf("\n%lld\n", ktab[j]);
 						continue;
 					}
 					else if (tab2[j] == 0)
@@ -64,7 +65,6 @@ int main(int argc, char *argv[])
 						p++;
 					}
 					n++, j = 0;
-					// printf("\nA%lld\n", n);
 					for (int m = 0; m < 24; m++)
 						ktab[m] = 0;
 					}
@@ -93,10 +93,15 @@ void printtab(unsigned long long int tab[],unsigned long long int t)
 
 	while (t > 0)
 	{
-		if (tab[0] != 0 || a == 1)
-			printf("%lld", tab[i]);
-		else
+		if (a == 1)
+		{
+		        printf("%lld", tab[i]);
+		}
+		else if (tab[i] != 0 || a == 1)
+		{
 			a = 1;
+			printf("%lld", tab[i]);
+		}
 		t--;
 		i++;
 	}
