@@ -14,8 +14,9 @@
 int main(int argc, char *argv[])
 {
 	FILE* fichier = NULL;
-	unsigned long long int chiffre_actuel = 0;
-	int tab[40], i = 0, tab2[40], n = 2, j = 0, r = 0, k = 0, p, t = 0, a;
+	unsigned long long int ktab[25], tab[25], tab2[25];
+	unsigned long long int i = 0, n = 2, j = 0, p, t = 0, a;
+	int chiffre_actuel = 0;
 
 	fichier = fopen(argv[1], "r");
 	if (fichier != NULL)
@@ -25,49 +26,55 @@ int main(int argc, char *argv[])
 			chiffre_actuel = fgetc(fichier);
 			if (chiffre_actuel == '\n')
 			{
-			        printtab(tab, i);
-				n = 2, t = 0, j=0, k = 0, p = 0, a = 1;
-				while (p < 38)
+				printtab(tab, i);
+				n = 2, t = 0, j = 0, p = 0, a = 1;
+				while (p <= 25)
 				{
 					tab2[p] = tab[p];
 					p++;
 				}
+				for (int m = 0; m <= 25; m++)
+					ktab[m] = 0;
 				while ((tab2[i-1] != 0 || j != i-1) || a == 1)
 				{
 					a = 0;
 					if (tab2[j] >= n)
 					{
 					        tab2[j] -=n;
-						k++;
+						ktab[j] += 1;
+						//	printf("\n%lld\n", ktab[j]);
 						continue;
 					}
 					else if (tab2[j] == 0)
 					{
 						j++;
-						k *= 10;
 						continue;
 					}
-					else if (tab2[j] < n && j <= i-1)
+					else if (tab2[j] < n && j < i-1)
 					{
 						tab2[j+1] = tab2[j]*10 + tab2[j+1], tab2[j] = 0;
 						t++;
 						j++;
-						k *= 10;
 						continue;
 					}
 					p = 0;
-					while (p < 38)
+					while (p <= 40)
 					{
 						tab2[p] = tab[p];
 						p++;
 					}
-					n++, j = 0, k = 0;
+					n++, j = 0;
+					// printf("\nA%lld\n", n);
+					for (int m = 0; m <= 25; m++)
+						ktab[m] = 0;
 					}
-				printf("=%d*%d\n", k, n);
+				printf("=");
+				printtab(ktab, i);
+				printf("*%lld\n", n);
 				i = 0;
-				for (int m = 0; m < 37; m++)
+				for (int m = 0; m <= 25; m++)
 					tab[m] = 0;
-				for (int m = 0; m < 37; m++)
+				for (int m = 0; m <= 25; m++)
 					tab2[m] = 0;
 			}
 			else
@@ -80,14 +87,14 @@ int main(int argc, char *argv[])
 	}
 	return (0);
 }
-void printtab(int tab[], int t)
+void printtab(unsigned long long int tab[],unsigned long long int t)
 {
 	int i = 0, a = 0;
 
 	while (t > 0)
 	{
 		if (tab[0] != 0 || a == 1)
-			printf("%d", tab[i]);
+			printf("%lld", tab[i]);
 		else
 			a = 1;
 		t--;
